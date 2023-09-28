@@ -1,0 +1,21 @@
+to do
+
+Add Data/CompensationContext - done
+
+
+
+Add Repositories/ICompensationRepository for Add and GetById and getAll - done
+Add CompensationRepository for Add and GetById and getAll - done
+
+
+
+Add ICompensationService for Create and GetById and getAll - done
+Add CompensationService for Create and GetById and get All - done
+
+Added iCompensation to employeecontroller
+
+
+
+
+
+

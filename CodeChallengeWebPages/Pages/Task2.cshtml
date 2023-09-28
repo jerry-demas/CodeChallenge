@@ -1,0 +1,121 @@
+﻿@page
+@model Task2Model
+@{
+    ViewData["Title"] = "Task2 results Page";
+}
+
+<h1> Task 2 results </h1>
+
+@if (!Model.dataEmployeesFound)
+{
+<p>No Employees have been found</p>
+
+} else
+{
+<h3> Employees </h3>
+<table>
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Name</th>
+            <th>Department</th>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model.employees)
+        {
+            <tr>
+                <td width="50%">
+                    @employee.EmployeeId
+                </td>
+                <td width="50%">
+                    @employee.FirstName @employee.LastName
+                </td>
+                <td width="50%">
+                    @employee.Department
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    //Add selection file to add Id
+<div class="container">
+        
+    <form method="POST">
+        <label for="employeeList">Choose Employee</label>
+        <select name="employeeList" id="employeeList">           
+            @foreach (var employee in Model.employees)
+            {
+                    if (employee.EmployeeId == Model.employeeId)
+                    {
+                        <option value=@employee.EmployeeId selected> @employee.FirstName @employee.LastName</option>
+                    } else
+                    {
+                        <option value=@employee.EmployeeId> @employee.FirstName @employee.LastName</option>
+                    }               
+            }
+        </select>            
+        <button class="btn btn-success" asp-route-value="GetData">Get Data</button>
+    </form>
+
+    
+</div>
+
+    <h3>Employee Compensation</h3>
+
+    
+    @if (Model.employeeId != "")
+    {
+        @if(Model.compensation == null)
+        {
+            <p>No compensation was found for this employee</p>
+            <p>Please add</p>
+            //Add to db
+            <form method="POST">
+
+                <select name="employeeList" id="employeeList">
+                    @foreach (var employee in Model.employees)
+                    {
+                        if (employee.EmployeeId == Model.employeeId)
+                        {
+                            <option value=@employee.EmployeeId selected> @employee.FirstName @employee.LastName</option>
+                        }                                         
+                    }
+                </select>
+                
+                <label for="employeeSalary">Salary $</label>
+                <input type="text" style="width:300px" id="eSalary" name="employeeSalary">              
+                <button class="btn btn-success" asp-route-value="AddComp">Add Comp</button>
+            </form>
+            
+        } else
+        {
+            //Compensation Structure
+            <table>
+                <thead>
+                    <th>Employee Id</th>            
+                    <th>Employee Name</th>              
+                    <th>Salary</th>
+                    <th>Effective Date</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td width="40%">
+                            @Model.compensation.Employee.EmployeeId
+                        </td>
+                        <td width="40%">
+                            @Model.compensation.Employee.FirstName @Model.compensation.Employee.LastName
+                        </td>                   
+                        <td width="20%">
+                            @Model.compensation.Salary
+                        </td>
+                        <td width="20%">
+                            @Model.compensation.EffectiveDate
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        }
+    }
+}

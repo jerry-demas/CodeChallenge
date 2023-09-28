@@ -1,0 +1,92 @@
+﻿@page
+@model Task1Model
+@{
+    ViewData["Title"] = "Task1 results Page";
+}
+
+<h1> Task 1 results </h1>
+
+
+
+@if (!Model.dataEmployeesFound)
+{
+    <p>No Employees have been found</p>
+
+} else
+{
+    <h3> Employees </h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Id</th>
+                <th>Name</th>
+                <th>Department</th>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.employees)
+            {
+                <tr>
+                    <td width="50%">
+                        @employee.EmployeeId
+                    </td>
+                    <td width="50%">
+                        @employee.FirstName @employee.LastName
+                    </td>
+                    <td width="50%">
+                        @employee.Department
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+    //Add text file to add Id
+    <div class="container">
+        <form method="POST">
+            <label for="eId">Employee Id</label>
+            <input type="text" style="width:300px" id="eId" name="employeeId">             
+            <button class="btn btn-success">Submit</button>
+        </form>
+    </div>
+
+
+
+}
+
+<h3> Employee Reporting Structure </h3>
+@if (Model.employeeId != "")
+{
+
+    @if (Model.reporting == null)
+    {
+        <p>No employee was found</p>
+    }
+    else
+    {
+
+        //reporting Structure
+        <table>
+            <thead>
+                <th>Employee Id</th>            
+                <th>Employee Name</th>              
+                <th>Number of reports</th>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td width="40%">
+                        @Model.reporting.Employee.EmployeeId
+                    </td>
+                    <td width="40%">
+                        @Model.reporting.Employee.FirstName @Model.reporting.Employee.LastName
+                    </td>                   
+                    <td width="20%" align="center">
+                        @Model.reporting.NumberOfReports
+                    </td>                 
+                </tr>
+
+            </tbody>
+        </table>
+    }
+}
+
