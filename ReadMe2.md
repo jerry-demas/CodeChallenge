@@ -10,7 +10,6 @@ I added Newtonsoft.Json(13.0.3) package to it.
 ### How to Run
 To work it, the solution would need to have both CodeChallenge and CodeChallengeWebPages to be run.
 
-
 This is done by right click on the solution in the Solution Explorer
 Under common properties, startup Project
 Select Multiple startup projects option
