@@ -1,13 +1,13 @@
-What was done.
+## What was done.
 
 
-I added a project (CodeChallengWebPages) to the solution.  This is an MVC web progect with Razor 
+I added a project (CodeChallengeWebPages) to the solution.  This is an MVC web project with Razor 
 pages to display the results of the code.
 
 I added Newtonsoft.Json(13.0.3) package to it.
 
 
-
+### How to Run
 To work it, the solution would need to have both CodeChallenge and CodeChallengeWebPages to be run.
 
 This is done by right click on the solution in the Solution Explorer
